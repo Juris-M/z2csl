@@ -22,10 +22,10 @@ The steps to generate a page are as follows:
 2. Install the plugin in a Firefox instance that has MLZ. Run z2csl
    and save the XML file to the source directory as "mlzTypeMap.xml".
 
-3. Run xsltproc typeMap.xml zoteroTypeMap.xml > zoteroPage.html
+3. Run xsltproc typeMap.xsl zoteroTypeMap.xml > zoteroPage.html
 
-4. Run xsltproc typeMap.xml mlzTypeMap.xml > mlzPage.html
+4. Run xsltproc typeMap.xsl mlzTypeMap.xml > mlzPage.html
 
-5. Run mergePages.py zoteroPage.html mlzPage.html > page.html
+5. Run mergePages.py zoteroPage.html mlzPage.html page.html
 
 FB
