@@ -6,7 +6,7 @@ import sys,re
 
 class Pages:
 
-    def __init__(self, old_page="zoteroPage.html", new_page="mlzPage.html", output_page="page.html"):
+    def __init__(self, old_page="zoteroPage.html", new_page="mlzPage.html", output_page="public/index.html"):
         self.old_page = old_page
         self.new_page = new_page
         self.output_page = output_page
