@@ -32,6 +32,7 @@
   <body>
     <h2><a name="toc">Juris-M Item Types</a></h2>
     <h4>Generated with Juris-M client <xsl:value-of select="map/zoteroVersion/@value"/> on <xsl:value-of select="map/date/@value"/></h4>
+    Return to <a href=".." style="font-variant:small-caps;">Juris-M</a>
     <table>
       <thead>
           <tr><th>Zotero type</th><th>Juris-M type</th></tr>
