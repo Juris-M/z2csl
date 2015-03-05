@@ -30,11 +30,11 @@
     <link rel="stylesheet" type="text/css" href="typeMap.css" />
   </head>
   <body>
-    <h2><a name="toc">Zotero Item Types</a></h2>
-    <h4>Generated with Zotero <xsl:value-of select="map/zoteroVersion/@value"/> on <xsl:value-of select="map/date/@value"/></h4>
+    <h2><a name="toc">Juris-M Item Types</a></h2>
+    <h4>Generated with Juris-M client <xsl:value-of select="map/zoteroVersion/@value"/> on <xsl:value-of select="map/date/@value"/></h4>
     <table>
       <thead>
-          <tr><th>Zotero type</th><th>CSL type</th></tr>
+          <tr><th>Zotero type</th><th>Juris-M type</th></tr>
       </thead>
       <tbody>
       <xsl:for-each select="map/zTypes/typeMap">
@@ -56,9 +56,9 @@
       </tbody>
     </table>
     <hr />
-    <h3>CSL variable descriptions</h3>
+    <h3>Juris-M variable descriptions</h3>
     <table>
-    	<thead><tr><th>CSL variable</th><th>Description</th></tr></thead>
+    	<thead><tr><th>Juris-M variable</th><th>Description</th></tr></thead>
     	<tbody>
 				<xsl:for-each select="map/cslVars/vars/var">
         <xsl:sort select="@name"/>
@@ -71,7 +71,7 @@
     		</xsl:for-each>
     	</tbody>
     </table>
-		* CSL variable has no corresponding Zotero field
+		* Juris-M variable has no corresponding Zotero field
     <xsl:for-each select="map/zTypes/typeMap">
     <xsl:sort select="@zType"/>
       <hr />
@@ -79,7 +79,7 @@
       <h3><a name="map-{@zType}"><xsl:value-of select="@zType"/> &#x2192; <xsl:value-of select="@cslType"/></a></h3>
       <table class="type-fields" name="{@zType}" label="{@label}">
         <thead>
-            <tr><th>UI Label</th><th>Zotero field</th><th>CSL field</th></tr>
+            <tr><th>UI Label</th><th>Zotero field</th><th>Juris-M field</th></tr>
         </thead>
         <tbody>
         <xsl:for-each select="field">
