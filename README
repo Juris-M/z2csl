@@ -26,6 +26,8 @@ The steps to generate a page are as follows:
 
 4. Run xsltproc typeMap.xsl mlzTypeMap.xml > mlzPage.html
 
-5. Run mergePages.py zoteroPage.html mlzPage.html page.html
+5. Run mergePages.py zoteroPage.html mlzPage.html
+
+6. Run ./publish.sh
 
 FB
