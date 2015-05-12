@@ -17,7 +17,7 @@ exclude_fields = {
 obj = {}
 
 parser = etree.HTMLParser()
-html = etree.parse('index.html', parser)
+html = etree.parse('public/index.html', parser)
 
 for itemType in html.xpath("//table[@label]"):
     itemTypeObj = {"fields":{},"creators":{}}
