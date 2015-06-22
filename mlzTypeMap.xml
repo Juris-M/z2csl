@@ -2,10 +2,10 @@
 <?xml-stylesheet type="text/xsl" href="typeMap.xsl"?>
 
 <map>
-  <zoteroVersion value="4.0.26m512" />
-  <date value="Wed, 04 Mar 2015 23:01:28 GMT" />
+  <zoteroVersion value="4.0.27m21alpha" />
+  <date value="Mon, 22 Jun 2015 02:06:32 GMT" />
   <zTypes>
-    <typeMap zType="note" cslType="" label="Note">
+    <typeMap zType="note" cslType="article" label="Note">
     </typeMap>
     <typeMap zType="book" cslType="book" label="Book">
       <field label="Title" value="title" />
@@ -113,6 +113,8 @@
     <typeMap zType="magazineArticle" cslType="article-magazine" label="Magazine Article">
       <field label="Title" value="title" />
       <field label="Abstract" value="abstractNote" />
+      <field label="Place" value="place" />
+      <field label="Publisher" value="publisher" />
       <field label="Publication" value="publicationTitle" />
       <field label="Volume" value="volume" />
       <field label="Issue" value="issue" />
@@ -236,6 +238,7 @@
     <typeMap zType="interview" cslType="interview" label="Interview">
       <field label="Title" value="title" />
       <field label="Abstract" value="abstractNote" />
+      <field label="Place" value="place" />
       <field label="Date" value="date" />
       <field label="Medium" value="interviewMedium" baseField="medium" />
       <field label="Language" value="language" />
@@ -320,7 +323,7 @@
         <creatorType label="Translator" value="translator" />
       </field>
     </typeMap>
-    <typeMap zType="attachment" cslType="" label="Attachment">
+    <typeMap zType="attachment" cslType="article" label="Attachment">
       <field label="Title" value="title" />
       <field label="Accessed" value="accessDate" />
       <field label="URL" value="url" />
@@ -336,6 +339,8 @@
       <field label="Medium" value="medium" />
       <field label="Place" value="place" />
       <field label="Institution" value="institution" />
+      <field label="Committee" value="committee" />
+      <field label="Assy. No." value="assemblyNumber" />
       <field label="Date" value="date" />
       <field label="Pages" value="pages" />
       <field label="Language" value="language" />
@@ -343,6 +348,7 @@
       <field label="Jurisdiction" value="jurisdiction" />
       <field label="URL" value="url" />
       <field label="Accessed" value="accessDate" />
+      <field label="Publisher" value="publisher" />
       <field label="Archive" value="archive" />
       <field label="Loc. in Archive" value="archiveLocation" />
       <field label="Library Catalog" value="libraryCatalog" />
@@ -388,6 +394,7 @@
     <typeMap zType="case" cslType="legal_case" label="Case">
       <field label="Case Name" value="caseName" baseField="title" />
       <field label="Short Title" value="shortTitle" />
+      <field label="Document Name" value="documentName" />
       <field label="Abstract" value="abstractNote" />
       <field label="Jurisdiction" value="jurisdiction" />
       <field label="Court" value="court" />
@@ -487,6 +494,7 @@
     <typeMap zType="statute" cslType="legislation" label="Statute">
       <field label="Name of Act" value="nameOfAct" baseField="title" />
       <field label="Short Title" value="shortTitle" />
+      <field label="Gazette Ref" value="gazetteFlag" />
       <field label="Abstract" value="abstractNote" />
       <field label="Jurisdiction" value="jurisdiction" />
       <field label="Code" value="code" />
@@ -827,7 +835,7 @@
         <creatorType label="Translator" value="translator" />
       </field>
     </typeMap>
-    <typeMap zType="document" cslType="" label="Document">
+    <typeMap zType="document" cslType="article" label="Document">
       <field label="Title" value="title" />
       <field label="Abstract" value="abstractNote" />
       <field label="Publisher" value="publisher" />
@@ -949,6 +957,8 @@
       <field label="Reporter" value="reporter" />
       <field label="Volume" value="volume" />
       <field label="Pages" value="pages" />
+      <field label="Parent Treaty" value="parentTreaty" />
+      <field label="Supp. Name" value="supplementName" />
       <field label="Date Opened" value="openingDate" />
       <field label="Date Adopted" value="adoptionDate" />
       <field label="Date Signed" value="signingDate" />
@@ -974,9 +984,10 @@
     </typeMap>
     <typeMap zType="regulation" cslType="regulation" label="Regulation">
       <field label="Name of Act" value="nameOfAct" baseField="title" />
+      <field label="Short Title" value="shortTitle" />
+      <field label="Gazette Ref" value="gazetteFlag" />
       <field label="Abstract" value="abstractNote" />
       <field label="Jurisdiction" value="jurisdiction" />
-      <field label="Short Title" value="shortTitle" />
       <field label="Authority" value="regulatoryBody" baseField="legislativeBody" />
       <field label="Type" value="regulationType" baseField="type" />
       <field label="Public Law Number" value="publicLawNumber" baseField="number" />
@@ -1070,6 +1081,8 @@
     <fieldMap zField="issuingAuthority" cslField="authority" />
     <fieldMap zField="institution" cslField="authority" />
     <fieldMap zField="committee" cslField="committee" />
+    <fieldMap zField="gazetteFlag" cslField="gazette-flag" />
+    <fieldMap zField="documentName" cslField="document-name" />
     <fieldMap zField="pages" cslField="page" />
     <fieldMap zField="volume" cslField="volume" />
     <fieldMap zField="codeNumber" cslField="volume" />
@@ -1079,7 +1092,7 @@
     <fieldMap zField="numberOfVolumes" cslField="number-of-volumes" />
     <fieldMap zField="numPages" cslField="number-of-pages" />
     <fieldMap zField="edition" cslField="edition" />
-    <fieldMap zField="version" cslField="version" />
+    <fieldMap zField="versionNumber" cslField="version" />
     <fieldMap zField="section" cslField="section" />
     <fieldMap zField="opus" cslField="section" />
     <fieldMap zField="type" cslField="genre" />

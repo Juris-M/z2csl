@@ -25,11 +25,10 @@ exclude_fields = [
 ]
 
 legal_types = [
-    "Gazette",
     "Statute",
     "Case",
-    "Patent",
     "Bill",
+    "Report",
     "Hearing",
     "Regulation"
 ]

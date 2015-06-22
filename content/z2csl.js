@@ -4,9 +4,15 @@ Zotero.Z2CSL = {
 	init: function() {
 		//load utilities.js so we can fetch the CSL mappings
 		var context = { Zotero: {}, XRegExp: {} };
-		Components.classes["@mozilla.org/moz/jssubscript-loader;1"]
-			.getService(Components.interfaces.mozIJSSubScriptLoader)
-			.loadSubScript("chrome://zotero/content/xpcom/utilities.js", context);
+        try {
+		    Components.classes["@mozilla.org/moz/jssubscript-loader;1"]
+			    .getService(Components.interfaces.mozIJSSubScriptLoader)
+			    .loadSubScript("chrome://jurism/content/xpcom/utilities.js", context);
+        } catch (e) {
+		    Components.classes["@mozilla.org/moz/jssubscript-loader;1"]
+			    .getService(Components.interfaces.mozIJSSubScriptLoader)
+			    .loadSubScript("chrome://jurism/content/xpcom/utilities.js", context);
+        }
 		this.cslTypeMap = context.CSL_TYPE_MAPPINGS;
 		this.cslFieldMap = context.CSL_TEXT_MAPPINGS;
 		this.cslDateMap = context.CSL_DATE_MAPPINGS;
@@ -20,35 +26,35 @@ Zotero.Z2CSL = {
 
 		//add current Zotero version and date of creation
 		map.childNodes.push({ name:'zoteroVersion',
-													attributes: { value: Zotero.version }
-												});
+							  attributes: { value: Zotero.version }
+							});
 		map.childNodes.push({ name:'date',
-													attributes: { value: (new Date()).toUTCString()}
-												});
+							  attributes: { value: (new Date()).toUTCString()}
+							});
 
 		var type, fields, baseField;
 		var nodes = [];
 
 		for(var i=0, n=this.zoteroTypes.length; i<n; i++) {
 			type = {name:'typeMap',
-							attributes:{
-								zType:this.zoteroTypes[i].name,
-								cslType:this.cslTypeMap[this.zoteroTypes[i].name],
-                                label:this.zoteroItemTypes.getLocalizedString(this.zoteroTypes[i].id)
-							},
-							childNodes:[]
-				};
+					attributes:{
+						zType:this.zoteroTypes[i].name,
+						cslType:this.cslTypeMap[this.zoteroTypes[i].name],
+                        label:this.zoteroItemTypes.getLocalizedString(this.zoteroTypes[i].id)
+					},
+					childNodes:[]
+				   };
 
 			fields = Zotero.ItemFields.getItemTypeFields(this.zoteroTypes[i].id);
 			var fieldMap, baseField;
 			for(var j=0, m=fields.length; j<m; j++) {
 				fieldMap = {
-										name:'field',
-										attributes:{
-												label:Zotero.ItemFields.getLocalizedString(this.zoteroTypes[i].id,fields[j]),
-												value:Zotero.ItemFields.getName(fields[j])
-										}
-								};
+					name:'field',
+					attributes:{
+						label:Zotero.ItemFields.getLocalizedString(this.zoteroTypes[i].id,fields[j]),
+						value:Zotero.ItemFields.getName(fields[j])
+					}
+				};
 
 				//Also retrieve base field so we can map to CSL
 				if(!Zotero.ItemFields.isBaseField(fields[j])) {
@@ -57,7 +63,7 @@ Zotero.Z2CSL = {
 						fieldMap.attributes.baseField = Zotero.ItemFields.getName(baseField);
 					}
 				}
-	
+	            
 				type.childNodes.push(fieldMap);
 			}
 
@@ -69,12 +75,12 @@ Zotero.Z2CSL = {
 				creatorNodes = {name:'field', attributes:{ value:'creator'}, childNodes: []};
 				for(var j=0, m=creators.length; j<m; j++) {
 					creator = {
-												name:'creatorType',
-												attributes:{ 
-														label:Zotero.getString('creatorTypes.' + creators[j].name),
-														value:creators[j].name
-												} 
-										};
+						name:'creatorType',
+						attributes:{ 
+							label:Zotero.getString('creatorTypes.' + creators[j].name),
+							value:creators[j].name
+						} 
+					};
 					//1 is author anyway
 					if(primaryID != 1 && creators[j].id == primaryID) {
 						creator.attributes.baseField = 'author';
@@ -161,7 +167,7 @@ Zotero.Z2CSL = {
 			var ostream = FileUtils.openSafeFileOutputStream(file)
 
 			var converter = Components.classes["@mozilla.org/intl/scriptableunicodeconverter"].
-										 createInstance(Components.interfaces.nsIScriptableUnicodeConverter);
+				createInstance(Components.interfaces.nsIScriptableUnicodeConverter);
 			converter.charset = "UTF-8";
 			var istream = converter.convertToInputStream(data);
 			NetUtil.asyncCopy(istream, ostream);
@@ -176,90 +182,90 @@ Zotero.Z2CSL = {
 		var me = this;
 
 		Zotero.HTTP.processDocuments(url, function(doc) {
-				var cslVars = { name: 'cslVars', childNodes: [] };
+			var cslVars = { name: 'cslVars', childNodes: [] };
 
-				//types
-				var types = Zotero.Utilities.xpath(doc, '//div[@id="appendix-iii-types"]/ul/li');
-				var t = { name: 'itemTypes', childNodes: [] };
-				for(var i=0, n=types.length; i<n; i++) {
-					t.childNodes.push({
-						name: 'type',
-						attributes: { name: types[i].textContent }
-					});
-				}
-				cslVars.childNodes.push(t);
-				
-				//variables
-				var variables = Zotero.Utilities.xpath(doc, '//div[@id="appendix-iv-variables"]')[0];
-				if(!variables) throw { message: 'Could not locate CSL variables' };
-
-				var varXPath = {
-					standard: './div[@id="standard-variables"]/dl/*[self::dt or self::dd]',
-					number: './/div[@id="number-variables"]/dl/*[self::dt or self::dd]',
-					date: './div[@id="date-variables"]/dl/*[self::dt or self::dd]',
-					name: './div[@id="name-variables"]/dl/*[self::dt or self::dd]',
-					mlz: './div[@id="mlz-variables"]/dl/*[self::dt or self::dd]'
-				};
-
-				var vars = { name: 'vars', childNodes: [] };
-				/**
-				 * At the time of writing, the following are not found on citationstyles.org page.
-				 * We add a description to them later, but make sure we don't overwrite or double-up
-				 * on these fields
-				 * see http://forums.zotero.org/discussion/26312/csl-variables-used-in-zotero-but-not-in-documentation/
-				 */
-				var missing = {
-					'language': {
-						type: 'standard',
-						description: 'Language code. Not intended for display purposes.'
-					}
-				};
-				var m, node;
-				for(var v in varXPath) {
-					var vbt = Zotero.Utilities.xpath(variables, varXPath[v]);
-					for(var i=0, n=vbt.length; i<n; i+=2) {
-						node = {
-							name: 'var',
-							attributes: {
-								name: vbt[i].textContent,
-								type: v,
-								description: me.escapeQuotes(
-									Zotero.Utilities.trimInternal(vbt[i+1].textContent)
-									)
-							}
-						};
-						
-						//remove missing items that were found
-						if(missing[node.attributes.name]) {
-							delete missing[node.attributes.name];
-						}
-						
-						vars.childNodes.push(node);
-					}
-				}
-				
-				//fill in missing fields
-				for(var field in missing) {
-					vars.childNodes.push({
-							name: 'var',
-							attributes: {
-								name: field,
-								type: missing[field].type,
-								description: missing[field].description
-							}
-					});
-				}
-				
-				cslVars.childNodes.push(vars);
-
-				me.cslVars = cslVars;
-				callback(cslVars);
-			},
-			null,
-			function(e) {
-				throw e;
+			//types
+			var types = Zotero.Utilities.xpath(doc, '//div[@id="appendix-iii-types"]/ul/li');
+			var t = { name: 'itemTypes', childNodes: [] };
+			for(var i=0, n=types.length; i<n; i++) {
+				t.childNodes.push({
+					name: 'type',
+					attributes: { name: types[i].textContent }
+				});
 			}
-		);
+			cslVars.childNodes.push(t);
+			
+			//variables
+			var variables = Zotero.Utilities.xpath(doc, '//div[@id="appendix-iv-variables"]')[0];
+			if(!variables) throw { message: 'Could not locate CSL variables' };
+
+			var varXPath = {
+				standard: './div[@id="standard-variables"]/dl/*[self::dt or self::dd]',
+				number: './/div[@id="number-variables"]/dl/*[self::dt or self::dd]',
+				date: './div[@id="date-variables"]/dl/*[self::dt or self::dd]',
+				name: './div[@id="name-variables"]/dl/*[self::dt or self::dd]',
+				mlz: './div[@id="mlz-variables"]/dl/*[self::dt or self::dd]'
+			};
+
+			var vars = { name: 'vars', childNodes: [] };
+			/**
+			 * At the time of writing, the following are not found on citationstyles.org page.
+			 * We add a description to them later, but make sure we don't overwrite or double-up
+			 * on these fields
+			 * see http://forums.zotero.org/discussion/26312/csl-variables-used-in-zotero-but-not-in-documentation/
+			 */
+			var missing = {
+				'language': {
+					type: 'standard',
+					description: 'Language code. Not intended for display purposes.'
+				}
+			};
+			var m, node;
+			for(var v in varXPath) {
+				var vbt = Zotero.Utilities.xpath(variables, varXPath[v]);
+				for(var i=0, n=vbt.length; i<n; i+=2) {
+					node = {
+						name: 'var',
+						attributes: {
+							name: vbt[i].textContent,
+							type: v,
+							description: me.escapeQuotes(
+								Zotero.Utilities.trimInternal(vbt[i+1].textContent)
+							)
+						}
+					};
+					
+					//remove missing items that were found
+					if(missing[node.attributes.name]) {
+						delete missing[node.attributes.name];
+					}
+					
+					vars.childNodes.push(node);
+				}
+			}
+			
+			//fill in missing fields
+			for(var field in missing) {
+				vars.childNodes.push({
+					name: 'var',
+					attributes: {
+						name: field,
+						type: missing[field].type,
+						description: missing[field].description
+					}
+				});
+			}
+			
+			cslVars.childNodes.push(vars);
+
+			me.cslVars = cslVars;
+			callback(cslVars);
+		},
+			                         null,
+			                         function(e) {
+				                         throw e;
+			                         }
+		                            );
 	},
 
 	escapeQuotes: function(str) {
