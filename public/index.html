@@ -6,7 +6,7 @@
 </head>
 <body>
 <h2><a name="toc">Juris-M Item Types</a></h2>
-<h4>Generated with Juris-M client 4.0.27m1beta12alpha on Thu, 21 May 2015 11:17:31 GMT</h4>
+<h4>Generated with Juris-M client 4.0.27m21alpha on Mon, 22 Jun 2015 02:06:32 GMT</h4>
 <p>Return to <a href=".." style="font-variant:small-caps;">Juris-M</a></p>
 <table>
 <thead><tr>
@@ -20,7 +20,7 @@
 </tr>
 <tr>
 <td><a href="#map-attachment">attachment</a></td>
-<td/>
+<td>article</td>
 </tr>
 <tr>
 <td><a href="#map-audioRecording">audioRecording</a></td>
@@ -64,7 +64,7 @@
 </tr>
 <tr>
 <td><a href="#map-document">document</a></td>
-<td/>
+<td>article</td>
 </tr>
 <tr>
 <td><a href="#map-email">email</a></td>
@@ -124,7 +124,7 @@
 </tr>
 <tr>
 <td><a href="#map-note">note</a></td>
-<td/>
+<td>article</td>
 </tr>
 <tr>
 <td><a href="#map-patent">patent</a></td>
@@ -177,10 +177,6 @@
 <tr>
 <td><a href="#map-webpage">webpage</a></td>
 <td>webpage</td>
-</tr>
-<tr>
-<td/>
-<td>article</td>
 </tr>
 <tr>
 <td/>
@@ -663,7 +659,7 @@
 </table>
 <hr/>
       (<a href="#toc">top</a>)
-      <h3><a name="map-attachment">attachment &#8594; </a></h3>
+      <h3><a name="map-attachment">attachment &#8594; article</a></h3>
 <table class="type-fields" name="attachment" label="Attachment">
 <thead><tr>
 <th>UI Label</th>
@@ -1498,6 +1494,11 @@
 <td>docketNumber (number)</td>
 <td><a href="#cslVar-number">number</a></td>
 </tr>
+<tr class="onew">
+<td>Document Name</td>
+<td>documentName</td>
+<td><a href="#cslVar-document-name">document-name</a></td>
+</tr>
 <tr>
 <td>Extra</td>
 <td>extra</td>
@@ -1825,7 +1826,7 @@
 <tr>
 <td>Version</td>
 <td>version</td>
-<td><a href="#cslVar-version">version</a></td>
+<td class="onew"><a href="#cslVar-"/></td>
 </tr>
 </tbody>
 </table>
@@ -2155,7 +2156,7 @@
 </table>
 <hr/>
       (<a href="#toc">top</a>)
-      <h3><a name="map-document">document &#8594; </a></h3>
+      <h3><a name="map-document">document &#8594; article</a></h3>
 <table class="type-fields" name="document" label="Document">
 <thead><tr>
 <th>UI Label</th>
@@ -2266,7 +2267,7 @@
 <tr class="onew">
 <td>Version</td>
 <td>version</td>
-<td><a href="#cslVar-version">version</a></td>
+<td><a href="#cslVar-"/></td>
 </tr>
 </tbody>
 </table>
@@ -3159,6 +3160,11 @@
 <td>libraryCatalog</td>
 <td><a href="#cslVar-source">source</a></td>
 </tr>
+<tr class="onew">
+<td>Place</td>
+<td>place</td>
+<td><a href="#cslVar-publisher-place">publisher-place</a></td>
+</tr>
 <tr>
 <td>Rights</td>
 <td>rights</td>
@@ -3545,10 +3551,20 @@
 <td>pages</td>
 <td><a href="#cslVar-page">page</a></td>
 </tr>
+<tr class="onew">
+<td>Place</td>
+<td>place</td>
+<td><a href="#cslVar-publisher-place">publisher-place</a></td>
+</tr>
 <tr>
 <td>Publication</td>
 <td>publicationTitle</td>
 <td><a href="#cslVar-container-title">container-title</a></td>
+</tr>
+<tr class="onew">
+<td>Publisher</td>
+<td>publisher</td>
+<td><a href="#cslVar-publisher">publisher</a></td>
 </tr>
 <tr>
 <td>Rights</td>
@@ -3970,7 +3986,7 @@
 </table>
 <hr/>
       (<a href="#toc">top</a>)
-      <h3><a name="map-note">note &#8594; </a></h3>
+      <h3><a name="map-note">note &#8594; article</a></h3>
 <table class="type-fields" name="note" label="Note">
 <thead><tr>
 <th>UI Label</th>
@@ -4635,6 +4651,11 @@
 <td><a href="#cslVar-archive_location">archive_location</a></td>
 </tr>
 <tr class="onew">
+<td>Assy. No.</td>
+<td>assemblyNumber</td>
+<td><a href="#cslVar-collection-number">collection-number</a></td>
+</tr>
+<tr class="onew">
 <td>Book Title</td>
 <td>bookTitle (publicationTitle)</td>
 <td><a href="#cslVar-container-title">container-title</a></td>
@@ -4718,6 +4739,11 @@
 <td>Place</td>
 <td>place</td>
 <td><a href="#cslVar-publisher-place">publisher-place</a></td>
+</tr>
+<tr class="onew">
+<td>Publisher</td>
+<td>publisher</td>
+<td><a href="#cslVar-publisher">publisher</a></td>
 </tr>
 <tr>
 <td>Report Number</td>
@@ -4879,7 +4905,7 @@
 <tr class="onew">
 <td>Version</td>
 <td>version</td>
-<td><a href="#cslVar-version">version</a></td>
+<td><a href="#cslVar-"/></td>
 </tr>
 </tbody>
 </table>
@@ -5243,6 +5269,11 @@
 <td><a href="#cslVar-page">page</a></td>
 </tr>
 <tr class="onew">
+<td>Parent Treaty</td>
+<td>parentTreaty</td>
+<td><a href="#cslVar-"/></td>
+</tr>
+<tr class="onew">
 <td>Publisher</td>
 <td>publisher</td>
 <td><a href="#cslVar-publisher">publisher</a></td>
@@ -5271,6 +5302,11 @@
 <td>Date Signed</td>
 <td>signingDate</td>
 <td><a href="#cslVar-event-date">event-date</a></td>
+</tr>
+<tr class="onew">
+<td>Supp. Name</td>
+<td>supplementName</td>
+<td><a href="#cslVar-genre">genre</a></td>
 </tr>
 <tr class="onew">
 <td>Title</td>
