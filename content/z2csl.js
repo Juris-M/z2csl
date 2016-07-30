@@ -7,11 +7,11 @@ Zotero.Z2CSL = {
         try {
 		    Components.classes["@mozilla.org/moz/jssubscript-loader;1"]
 			    .getService(Components.interfaces.mozIJSSubScriptLoader)
-			    .loadSubScript("chrome://jurism/content/xpcom/utilities.js", context);
+			    .loadSubScript("chrome://zotero/content/xpcom/utilities.js", context);
         } catch (e) {
 		    Components.classes["@mozilla.org/moz/jssubscript-loader;1"]
 			    .getService(Components.interfaces.mozIJSSubScriptLoader)
-			    .loadSubScript("chrome://jurism/content/xpcom/utilities.js", context);
+			    .loadSubScript("chrome://zotero/content/xpcom/utilities.js", context);
         }
 		this.cslTypeMap = context.CSL_TYPE_MAPPINGS;
 		this.cslFieldMap = context.CSL_TEXT_MAPPINGS;

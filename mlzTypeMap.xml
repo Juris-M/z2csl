@@ -2,8 +2,8 @@
 <?xml-stylesheet type="text/xsl" href="typeMap.xsl"?>
 
 <map>
-  <zoteroVersion value="4.0.27m21alpha" />
-  <date value="Mon, 22 Jun 2015 02:06:32 GMT" />
+  <zoteroVersion value="4.0.29.10m90alpha" />
+  <date value="Sat, 30 Jul 2016 22:23:42 GMT" />
   <zTypes>
     <typeMap zType="note" cslType="article" label="Note">
     </typeMap>
@@ -389,6 +389,7 @@
         <creatorType label="Sponsor" value="sponsor" baseField="author" />
         <creatorType label="Contributor" value="contributor" />
         <creatorType label="Cosponsor" value="cosponsor" />
+        <creatorType label="Translator" value="translator" />
       </field>
     </typeMap>
     <typeMap zType="case" cslType="legal_case" label="Case">
@@ -425,6 +426,7 @@
         <creatorType label="Commenter" value="commenter" />
         <creatorType label="Contributor" value="contributor" />
         <creatorType label="Counsel" value="counsel" />
+        <creatorType label="Translator" value="translator" />
       </field>
     </typeMap>
     <typeMap zType="hearing" cslType="hearing" label="Hearing">
@@ -455,14 +457,16 @@
       <field label="Rights" value="rights" />
       <field label="Extra" value="extra" />
       <field value="creator">
-        <creatorType label="Testimony By" value="testimonyBy" baseField="author" />
-        <creatorType label="Contributor" value="contributor" />
+        <creatorType label="Contributor" value="contributor" baseField="author" />
+        <creatorType label="Testimony By" value="testimonyBy" />
+        <creatorType label="Translator" value="translator" />
       </field>
     </typeMap>
     <typeMap zType="patent" cslType="patent" label="Patent">
       <field label="Title" value="title" />
       <field label="Abstract" value="abstractNote" />
       <field label="Jurisdiction" value="jurisdiction" />
+      <field label="Genre" value="genre" />
       <field label="Issuing Authority" value="issuingAuthority" />
       <field label="Place" value="place" />
       <field label="Patent Number" value="patentNumber" baseField="number" />
@@ -519,6 +523,7 @@
       <field value="creator">
         <creatorType label="Author" value="author" />
         <creatorType label="Contributor" value="contributor" />
+        <creatorType label="Translator" value="translator" />
       </field>
     </typeMap>
     <typeMap zType="email" cslType="personal_communication" label="E-mail">
@@ -948,6 +953,7 @@
       <field value="creator">
         <creatorType label="Author" value="author" />
         <creatorType label="Contributor" value="contributor" />
+        <creatorType label="Translator" value="translator" />
       </field>
     </typeMap>
     <typeMap zType="treaty" cslType="treaty" label="Treaty">
@@ -1008,6 +1014,7 @@
       <field value="creator">
         <creatorType label="Author" value="author" />
         <creatorType label="Contributor" value="contributor" />
+        <creatorType label="Translator" value="translator" />
       </field>
     </typeMap>
     <typeMap zType="classic" cslType="classic" label="Classic">
@@ -1069,6 +1076,7 @@
     <fieldMap zField="websiteTitle" cslField="container-title" />
     <fieldMap zField="seriesTitle" cslField="collection-title" />
     <fieldMap zField="series" cslField="collection-title" />
+    <fieldMap zField="parentTreaty" cslField="collection-title" />
     <fieldMap zField="seriesNumber" cslField="collection-number" />
     <fieldMap zField="assemblyNumber" cslField="collection-number" />
     <fieldMap zField="regnalYear" cslField="collection-number" />
@@ -1095,6 +1103,7 @@
     <fieldMap zField="versionNumber" cslField="version" />
     <fieldMap zField="section" cslField="section" />
     <fieldMap zField="opus" cslField="section" />
+    <fieldMap zField="genre" cslField="genre" />
     <fieldMap zField="type" cslField="genre" />
     <fieldMap zField="reign" cslField="genre" />
     <fieldMap zField="supplementName" cslField="genre" />
@@ -1157,6 +1166,7 @@
     <creatorMap zCreator="recipient" cslCreator="recipient" />
     <creatorMap zCreator="reviewedAuthor" cslCreator="reviewed-author" />
     <creatorMap zCreator="seriesEditor" cslCreator="collection-editor" />
+    <creatorMap zCreator="testimonyBy" cslCreator="author" />
     <creatorMap zCreator="translator" cslCreator="translator" />
     <creatorMap zCreator="contributor" cslCreator="contributor" />
     <creatorMap zCreator="authority" cslCreator="authority" />
